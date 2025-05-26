@@ -62,12 +62,27 @@ export class GdmLiveAudioVisuals3D extends LitElement {
   private canvas!: HTMLCanvasElement;
 
   static styles = css`
+    :host {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      min-height: 100vh;
+      min-width: 100vw;
+      overflow: hidden;
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+    }
     canvas {
-      width: 100% !important;
-      height: 100% !important;
+      width: 100vw !important;
+      height: 100vh !important;
       position: absolute;
       inset: 0;
       image-rendering: pixelated;
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+      background: #100c14;
     }
   `;
 
@@ -134,7 +149,7 @@ export class GdmLiveAudioVisuals3D extends LitElement {
       emissiveIntensity: 1.5,
     });
 
-    sphereMaterial.onBeforeCompile = (shader) => {
+    sphereMaterial.onBeforeCompile = (shader: any) => {
       shader.uniforms.time = {value: 0};
       shader.uniforms.inputData = {value: new THREE.Vector4()};
       shader.uniforms.outputData = {value: new THREE.Vector4()};
